@@ -1,13 +1,18 @@
 package TestGestionPartis;
 
-import static org.junit.Assert.*;
+
+
+
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.*;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
 
 import GestionPartis.AjouterParti;
 import MenuPrincipal.Verif;
@@ -15,7 +20,7 @@ import MenuPrincipal.Verif;
 public class TestAjouterParti {
 
 	@Test
-    public void testOpenJFrameAjouterElecteur() {
+    public void testOpenJFrameAjouterParti() {
         AjouterParti frame = new AjouterParti();
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setPreferredSize(new Dimension(200, 400));
@@ -28,7 +33,8 @@ public class TestAjouterParti {
         assertEquals(frame.getTitle(), "Test Ajouter Parti"); 
         assertEquals(frame.getSize(), new Dimension(200, 400)); 
             }
-	
+
+
 	
 	 	
 	 	  @Test 
@@ -147,7 +153,88 @@ public class TestAjouterParti {
 			    assertEquals("Le nom du Président ne peut contenir que des lettres !", Verif.msg);
 		
 		}
+		 @Test 
+		  public void testNbAdgWithValidInput() {
+			  AjouterParti ajoutP = new AjouterParti();
+			    JTextField nb = new JTextField();
+			    nb.setText("5");
+			    ajoutP.setNbr_adh(nb);
+			    Verif.digitMessage(ajoutP.getNbr_adh().getText(),"Le nombre d'Adhérents");
+			    assertEquals("", Verif.msg);
+			}
 		
+		@Test 
+		  public void testNbAdhWithNULLInput() {
+			  AjouterParti ajoutP = new AjouterParti();
+			    JTextField nb = new JTextField();
+			    nb.setText("");
+			    ajoutP.setNbr_adh(nb);
+			    Verif.digitMessage(ajoutP.getNbr_adh().getText(), "Le nombre d'Adhérents");
+			    assertEquals("Le nombre d'Adhérents ne peut contenir que des chiffres !", Verif.msg);
+			}
+		@Test 
+		  public void testNbAdhWithInvalidInput() {
+			  AjouterParti ajoutP = new AjouterParti();
+			    JTextField nb = new JTextField();
+			    nb.setText("A6");
+			    ajoutP.setNbr_adh(nb);
+			    Verif.digitMessage(ajoutP.getNbr_adh().getText(), "Le nombre d'Adhérents");
+			    assertEquals("Le nombre d'Adhérents ne peut contenir que des chiffres !", Verif.msg);
+			}
+		@Test 
+		  public void testDateWithValidInput() {
+			  AjouterParti ajoutP = new AjouterParti();
+			    JTextField date = new JTextField();
+			    date.setText("12/03/2023");
+			    ajoutP.setDatedebb(date);
+			    Verif.dateMessage(ajoutP.getDatedebb().getText(),"La date de légalisation");
+			    assertEquals("", Verif.msg);
+			}
+		@Test 
+		  public void testDateWithNULLInput() {
+			  AjouterParti ajoutP = new AjouterParti();
+			    JTextField date = new JTextField();
+			    date.setText("");
+			    ajoutP.setDatedebb(date);
+			    Verif.dateMessage(ajoutP.getDatedebb().getText(),"La date de légalisation");
+			    assertEquals("La date de légalisation est incorrecte !\\nVérifier cette date !", Verif.msg);
+			}
+		@Test 
+		  public void testDateWithInvalidInput() {
+			  AjouterParti ajoutP = new AjouterParti();
+			    JTextField date = new JTextField();
+			    date.setText("55/02/2023");
+			    ajoutP.setDatedebb(date);
+			    Verif.dateMessage(ajoutP.getDatedebb().getText(),"La date de légalisation");
+			    assertEquals("La date de légalisation est incorrecte !\\nVérifier cette date !", Verif.msg);
+			}
+		@Test 
+		  public void testIdeoWithValidInput() {
+			  AjouterParti ajoutP = new AjouterParti();
+			    JTextField ideo = new JTextField();
+			    ideo.setText("ideologie");
+			    ajoutP.setIdeo(ideo);
+			    Verif.alphaMessage(ajoutP.getIdeo().getText(),"L'idéologie");
+			    assertEquals("", Verif.msg);
+			}
+		@Test 
+		  public void testIdeoWithInValidInput() {
+			  AjouterParti ajoutP = new AjouterParti();
+			    JTextField ideo = new JTextField();
+			    ideo.setText("ideologie2");
+			    ajoutP.setIdeo(ideo);
+			    Verif.alphaMessage(ajoutP.getIdeo().getText(),"L'idéologie");
+			    assertEquals("L'idéologie ne peut contenir que des lettres !", Verif.msg);
+			}
+		@Test 
+		  public void testIdeoWithNullInput() {
+			  AjouterParti ajoutP = new AjouterParti();
+			    JTextField ideo = new JTextField();
+			    ideo.setText("");
+			    ajoutP.setIdeo(ideo);
+			    Verif.alphaMessage(ajoutP.getIdeo().getText(),"L'idéologie");
+			    assertEquals("L'idéologie ne peut contenir que des lettres !", Verif.msg);
+			}
 		
 	 	
 }

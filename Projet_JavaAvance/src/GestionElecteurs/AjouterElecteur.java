@@ -355,7 +355,10 @@ public class AjouterElecteur extends JFrame{
 								if(Verif.msg.equals("")||Integer.parseInt(age.getText())<18)
 									Verif.digitMessage(age.getText(), "l'age d'un electeur");
 										if (Verif.msg.equals("")) 
+											Verif.alphaMessage(choix.getText(),"Le choix de l'électeur");
+										if (Verif.msg.equals("")) 
 								         {Verif.RadioButton_oneSelected(vote.isSelected(),nonVote.isSelected(),"la situation");
+								          
 								if (Verif.msg.equals("")){	//il n'a pas trouv� la CIN donn�e (il s'agit r�ellement d'in nouvel �lecteur)				
 									Calendar cal = Calendar.getInstance();
 								String ch=(cal.get(Calendar.HOUR_OF_DAY)+":"+cal.get(Calendar.MINUTE)+":"+cal.get(Calendar.SECOND));

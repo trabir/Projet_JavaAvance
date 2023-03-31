@@ -161,6 +161,33 @@ public class TestAjouterElecteur {
 		Verif.digitMessage(age.getText(),"le cin d'un electeur");
 		assertEquals("", Verif.msg);
 		}
+	 @Test 
+	  public void testChoixWithValidInput() {
+		  AjouterElecteur ajoutE = new AjouterElecteur();
+		    JTextField ch = new JTextField();
+		    ch.setText("AAAAAAA");
+		    ajoutE.setChoix(ch);
+		    Verif.alphaMessage(ajoutE.getChoix().getText(), "Le choix de l'électeur");
+		    assertEquals("", Verif.msg);
+		}
+	  @Test 
+	  public void testChoixWithNullInput() {
+		  AjouterElecteur ajoutE = new AjouterElecteur();
+		    JTextField ch = new JTextField();
+		    ch.setText("");
+		    ajoutE.setChoix(ch);
+		    Verif.alphaMessage(ajoutE.getChoix().getText(), "Le choix de l'électeur");
+		    assertEquals("Le choix de l'électeur ne peut contenir que des lettres !", Verif.msg);
+		}
+	  @Test 
+	  public void testChoixWithInvalidInput() {
+		  AjouterElecteur ajoutE = new AjouterElecteur();
+		    JTextField ch = new JTextField();
+		    ch.setText("AAA55_");
+		    ajoutE.setChoix(ch);
+		    Verif.alphaMessage(ajoutE.getChoix().getText(), "Le choix de l'électeur");
+		    assertEquals("Le choix de l'électeur ne peut contenir que des lettres !", Verif.msg);
+		}
 	
 
 }

@@ -137,6 +137,13 @@ public class Verif {
 			 return res;
 			 		 
 		 }
+		 public static void dateMessage(String s, String champ) {//cette methode v�rifie si la chaine donn�e ne contient uniquement que des lettres
+			  msg="";
+			  if(verifdate(s)==false) {
+				  msg=champ+" est incorrecte !\\nVérifier cette date !";
+				JOptionPane.showMessageDialog(null,champ+" est incorrecte !\\nVérifier cette date !");
+			
+		   }}
 		 
 		 
 

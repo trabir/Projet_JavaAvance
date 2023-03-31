@@ -72,6 +72,45 @@ public class AjouterParti extends JFrame {
 		this.president = president;
 	}
 
+	
+
+
+	public JTextField getNbr_adh() {
+		return nbr_adh;
+	}
+
+
+
+	public void setNbr_adh(JTextField nbr_adh) {
+		this.nbr_adh = nbr_adh;
+	}
+	
+
+
+
+	public JTextField getDatedebb() {
+		return datedebb;
+	}
+
+
+
+	public void setDatedebb(JTextField datedebb) {
+		this.datedebb = datedebb;
+	}
+	
+
+
+
+	public JTextField getIdeo() {
+		return ideo;
+	}
+
+
+
+	public void setIdeo(JTextField ideo) {
+		this.ideo = ideo;
+	}
+
 
 
 	/**
@@ -114,11 +153,18 @@ public class AjouterParti extends JFrame {
 					if (Verif.msg.equals("")) {
 						Verif.alphaMessage(x3, "Le nom du Président");
 						if (Verif.msg.equals("")) {
+							Verif.digitMessage(x4, "Le nombre d'Adhérents");
+							if (Verif.msg.equals("")) {
+								Verif.dateMessage(x5,"La date de légalisation");
+								if (Verif.msg.equals("")) {
+									Verif.alphaMessage(x6, "L'idéologie");
+									if (Verif.msg.equals("")) {
 							Parti partis=new Parti(nom.getText(),symbol.getText(),president.getText(),Integer.parseInt(nbr_adh.getText()),datedebb.getText(),ideo.getText()) ;
 							JOptionPane.showMessageDialog(null,"Félicitations !\nL'Ajout s'est effectué avec succès !");					
 						
-						}
-				}}
+						}}
+						
+				}}}}
 				
 		}});
 				
