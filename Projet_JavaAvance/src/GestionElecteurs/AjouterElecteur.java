@@ -43,21 +43,282 @@ public class AjouterElecteur extends JFrame{
 	private ImageIcon image;
 	private JButton retourlbl;
 	private ImageIcon imager;
-	private JButton button;
+	
+	
+	
+	
+	
+	
+	
 
 	
+
+
+
+	public JTextField getNom() {
+		return Nom;
+	}
+
+
+
+
+
+	public JTextField getPrenom() {
+		return Prenom;
+	}
+
+
+
+
+
+	public JTextField getCin() {
+		return Cin;
+	}
+
+
+
+
+
+	public JTextField getAge() {
+		return Age;
+	}
+
+
+
+
+
+	public JTextField getBurvote() {
+		return Burvote;
+	}
+
+
+
+
+
+	public JTextField getChoix() {
+		return Choix;
+	}
+
+
+
+
+
 	public JRadioButton getVote() {
 		return vote;
 	}
+
+
+
+
 
 	public JRadioButton getNonVote() {
 		return nonVote;
 	}
 
+
+
+
+
+	public ImageIcon getImage() {
+		return image;
+	}
+
+
+
+
+
+	public JButton getRetourlbl() {
+		return retourlbl;
+	}
+
+
+
+
+
+	public ImageIcon getImager() {
+		return imager;
+	}
+
+
+
+
+
+	public void setContentPane(JPanel contentPane) {
+		this.contentPane = contentPane;
+	}
+
+
+
+
+
+	public void setTitle(JLabel title) {
+		this.title = title;
+	}
+
+
+
+
+
+	public void setNom(JLabel nom) {
+		this.nom = nom;
+	}
+
+
+
+
+
+	public void setPrenom(JLabel prenom) {
+		this.prenom = prenom;
+	}
+
+
+
+
+
+	public void setCin(JLabel cin) {
+		this.cin = cin;
+	}
+
+
+
+
+
+	public void setAge(JLabel age) {
+		this.age = age;
+	}
+
+
+
+
+
+	public void setBurvote(JLabel burvote) {
+		this.burvote = burvote;
+	}
+
+
+
+
+
+	public void setChoix(JLabel choix) {
+		this.choix = choix;
+	}
+
+
+
+
+
+	public void setSituation(JLabel situation) {
+		this.situation = situation;
+	}
+
+
+
+
+
+	public void setImageLbl(JLabel imageLbl) {
+		this.imageLbl = imageLbl;
+	}
+
+
+
+
+
+	public void setNom(JTextField nom) {
+		Nom = nom;
+	}
+
+
+
+
+
+	public void setPrenom(JTextField prenom) {
+		Prenom = prenom;
+	}
+
+
+
+
+
+	public void setCin(JTextField cin) {
+		Cin = cin;
+	}
+
+
+
+
+
+	public void setAge(JTextField age) {
+		Age = age;
+	}
+
+
+
+
+
+	public void setBurvote(JTextField burvote) {
+		Burvote = burvote;
+	}
+
+
+
+
+
+	public void setChoix(JTextField choix) {
+		Choix = choix;
+	}
+
+
+
+
+
+	public void setVote(JRadioButton vote) {
+		this.vote = vote;
+	}
+
+
+
+
+
+	public void setNonVote(JRadioButton nonVote) {
+		this.nonVote = nonVote;
+	}
+
+
+
+
+
+	public void setImage(ImageIcon image) {
+		this.image = image;
+	}
+
+
+
+
+
+	public void setRetourlbl(JButton retourlbl) {
+		this.retourlbl = retourlbl;
+	}
+
+
+
+
+
+	public void setImager(ImageIcon imager) {
+		this.imager = imager;
+	}
+
+
+
+
+
 	public void close() //appeler cette methode pour fermer le frame en cas de besoin
 	{WindowEvent winClosingEvent= new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
 	Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);		
 	}
+	
+	
+	
+	
 
 	/**
 	 * Create the frame.
@@ -79,31 +340,40 @@ public class AjouterElecteur extends JFrame{
 		title.setForeground(Color.RED);//changement de couleur
 		title.setBounds(120,30,600,50);//changement de dimension
 		contentPane.add(title);
-		button = new JButton("S'INSCRIRE");
+		
+			
+		
+		
+		JButton button = new JButton("S'INSCRIRE");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String x1=Nom.getText();
-				String x2=Prenom.getText();
-				String x3=Cin.getText();
-				String x4=Age.getText();
-				String x5=Burvote.getText();
-				String x6=Choix.getText();
+				Verif.alphaMessage(nom.getText(),"le nom d'un electeur");
+				if (Verif.msg.equals("")) 
+					Verif.alphaMessage(prenom.getText(), "le prenom d'un electeur");
+						if (Verif.msg.equals(""))
+							Verif.digitMessage(cin.getText(),"le cin d'un electeur");
+								if(Verif.msg.equals("")||Integer.parseInt(age.getText())<18)
+									Verif.digitMessage(age.getText(), "l'age d'un electeur");
+										if (Verif.msg.equals("")) 
+								         {Verif.RadioButton_oneSelected(vote.isSelected(),nonVote.isSelected(),"la situation");
+								if (Verif.msg.equals("")){	//il n'a pas trouv� la CIN donn�e (il s'agit r�ellement d'in nouvel �lecteur)				
+									Calendar cal = Calendar.getInstance();
+								String ch=(cal.get(Calendar.HOUR_OF_DAY)+":"+cal.get(Calendar.MINUTE)+":"+cal.get(Calendar.SECOND));
+								String situation ;//va contenir la situation s�l�ction�e
+								if(vote.isSelected()) {
+									situation=vote.getText() ;
+								}else {
+									situation=nonVote.getText() ;
+								}
+									Electeur electeur=new Electeur(Nom.getText(),Prenom.getText(),Cin.getText(),Integer.parseInt(Age.getText()),Integer.parseInt(Burvote.getText()),Choix.getText(),situation,ch) ;
+									JOptionPane.showMessageDialog(null,"L'Ajout s'est effectué avec succès !");
+								
+								
+							}}		
+					
 				
-				Verif.RadioButton_oneSelected(vote.isSelected(),nonVote.isSelected(),"la situation");
-				if (Verif.msg.equals("")){	//il n'a pas trouv� la CIN donn�e (il s'agit r�ellement d'in nouvel �lecteur)				
-					Calendar cal = Calendar.getInstance();
-				String ch=(cal.get(Calendar.HOUR_OF_DAY)+":"+cal.get(Calendar.MINUTE)+":"+cal.get(Calendar.SECOND));
-				String situation ;//va contenir la situation s�l�ction�e
-				if(vote.isSelected()) {
-					situation=vote.getText() ;
-				}else {
-					situation=nonVote.getText() ;
-				}
-					Electeur electeur=new Electeur(x1,x2,x3,Integer.parseInt(x4),Integer.parseInt(x5),x6,situation,ch) ;
-					JOptionPane.showMessageDialog(null,"L'Ajout s'est effectué avec succès !");
 				
-				
-			}
+	
 			}
 		});
 		button.setForeground(Color.WHITE);
@@ -116,7 +386,7 @@ public class AjouterElecteur extends JFrame{
 		contentPane.add(nom);
 		
 		Nom= new JTextField();
-	   	Nom.setBounds(395, 115, 283, 30);
+		Nom.setBounds(395, 115, 283, 30);
 		contentPane.add(Nom);
 		Nom.setColumns(10);
 			
@@ -125,7 +395,7 @@ public class AjouterElecteur extends JFrame{
 		contentPane.add(prenom);
 		
 		Prenom= new JTextField();
-	   	Prenom.setBounds(395, 185, 283, 30);
+		Prenom.setBounds(395, 185, 283, 30);
 		contentPane.add(Prenom);
 		Prenom.setColumns(10);
 				
@@ -134,7 +404,7 @@ public class AjouterElecteur extends JFrame{
 		contentPane.add(cin);
 		
 		Cin= new JTextField();
-	   	Cin.setBounds(395, 255, 283, 30);
+		Cin.setBounds(395, 255, 283, 30);
 		contentPane.add(Cin);
 		Cin.setColumns(10);
 			
@@ -143,7 +413,7 @@ public class AjouterElecteur extends JFrame{
 		contentPane.add(age);
 		
 		Age= new JTextField();
-	   	Age.setBounds(395, 325, 50, 30);
+		Age.setBounds(395, 325, 50, 30);
 		contentPane.add(Age);
 		Age.setColumns(10);
 		
@@ -153,7 +423,7 @@ public class AjouterElecteur extends JFrame{
 		contentPane.add(burvote);
 		
 		Burvote= new JTextField();
-	   	Burvote.setBounds(395, 395, 50, 30);
+		Burvote.setBounds(395, 395, 50, 30);
 		contentPane.add(Burvote);
 		Burvote.setColumns(10);
 		
@@ -162,7 +432,7 @@ public class AjouterElecteur extends JFrame{
 		contentPane.add(choix);
 		
 		Choix= new JTextField();
-	   	Choix.setBounds(395, 465, 283, 30);
+		Choix.setBounds(395, 465, 283, 30);
 		contentPane.add(Choix);
 		Choix.setColumns(10);
 		
@@ -191,14 +461,7 @@ public class AjouterElecteur extends JFrame{
 		imageLbl.setIcon(image);
 		
 		retourlbl = new JButton("");
-		 retourlbl.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					setVisible(false);
-					//Frame1.frame_1.setVisible(true);
-					
-				}
 
-         });
 		retourlbl.setBounds(10, 465, 100, 100);
 		contentPane.add(retourlbl);
 
@@ -208,6 +471,12 @@ public class AjouterElecteur extends JFrame{
 		
 	}
 	
+	
+	
+
+	  
+
+	  
 
 		public static void main(String[] args) {
 			EventQueue.invokeLater(new Runnable() {
@@ -222,6 +491,7 @@ public class AjouterElecteur extends JFrame{
 			});
 		}
 	
-
+	
+	
 
 }
